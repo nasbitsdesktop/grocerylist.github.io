@@ -1,44 +1,16 @@
-document.addEventListener('DOMContentLoaded', loadList);
+document.addEventListener('DOMContentLoaded', loadText);
 
-document.getElementById('add-button').addEventListener('click', function() {
-    const itemInput = document.getElementById('item-input');
-    const itemValue = itemInput.value.trim();
+const textarea = document.getElementById('grocery-textarea');
 
-    if (itemValue) {
-        addItemToList(itemValue);
-        saveList();
-        itemInput.value = '';
-    }
-});
+textarea.addEventListener('input', saveText);
 
-function addItemToList(item) {
-    const list = document.getElementById('grocery-list');
-    const listItem = document.createElement('li');
-    listItem.textContent = item;
-
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.addEventListener('click', function() {
-        list.removeChild(listItem);
-        saveList();
-    });
-
-    listItem.appendChild(removeButton);
-    list.appendChild(listItem);
+function saveText() {
+    localStorage.setItem('groceryText', textarea.value);
 }
 
-function saveList() {
-    const listItems = [];
-    const list = document.getElementById('grocery-list').children;
-    for (let item of list) {
-        listItems.push(item.textContent.replace('Remove', '').trim());
-    }
-    localStorage.setItem('groceryList', JSON.stringify(listItems));
-}
-
-function loadList() {
-    const storedList = JSON.parse(localStorage.getItem('groceryList'));
-    if (storedList) {
-        storedList.forEach(item => addItemToList(item));
+function loadText() {
+    const savedText = localStorage.getItem('groceryText');
+    if (savedText) {
+        textarea.value = savedText;
     }
 }

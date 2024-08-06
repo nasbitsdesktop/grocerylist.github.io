@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 4em;
+            color: #ff6347;
+            margin-top: 50px;
+        }
+        p {
+            font-size: 1.5em;
+            color: #555;
+        }
+        .container {
+            margin: 20px;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #1e90ff;
+            font-size: 1.2em;
+            border: 2px solid #1e90ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block; /* Make sure the button is treated as an inline block element */
+            margin-top: 20px; /* Add space above the button */
+        }
+        .back-link:hover {
+            background-color: #1e90ff;
+            color: #fff;
+        }
+        .error-image {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Oops! 404 Not Found.</h1>
+        <p id="error-message">If you can read this, the site may be done for.</p>
+        <a href="/" class="back-link">Go Back to the main page!</a>
+    </div>
+    <script>
+        // Array of quotes
+        const quotes = [
+            "Do or do not. There is no try. - Yoda",
+            "The Force will be with you, always. - Obi-Wan Kenobi",
+            "May the Force be with you. - Multiple characters",
+            "Help me, Obi-Wan Kenobi. You're my only hope. - Princess Leia",
+            "I am your father. - Darth Vader",
+            "Laugh it up, fuzzball! - Han Solo",
+            "It's a trap! - Admiral Ackbar",
+            "That's no moon. It's a space station. - Obi-Wan Kenobi",
+            "I have a bad feeling about this. - Multiple characters",
+            "Never tell me the odds! - Han Solo",
+            "Do not underestimate the power of the dark side. - Darth Sidious",
+            "Fear leads to anger. Anger leads to hate. Hate leads to suffering. - Yoda",
+            "The greatest teacher, failure is. - Yoda",
+            "I'm not afraid to die. I'm afraid to live in a world ruled by the Empire. - Princess Leia",
+            "Size matters not. - Yoda",
+            "Your focus determines your reality. - Qui-Gon Jinn",
+            "The Force is strong with this one. - Obi-Wan Kenobi",
+            "I find your lack of faith disturbing. - Darth Vader",
+            "It's the ship that made the Kessel Run in less than twelve parsecs. - Han Solo",
+            "This is the way. - Din Djarin (The Mandalorian)",
+            "You were the chosen one! It was said that you would destroy the Sith, not join them! - Obi-Wan Kenobi",
+            "I am altering the deal, pray I do not alter it further. - Darth Vader",
+            "Let the past die. Kill it if you have to. It's the only way to truly be free. - Kylo Ren",
+            "The Force doesn't belong to the Jedi, or the Sith. It belongs to the living. - Rey",
+            "Everything you've heard about me is true. - Han Solo",
+            "We must keep our faith in the Republic. There is good in the world, and we have not lost it yet. - Senator Bail Organa",
+            "Judge me by my size, do you? - Yoda",
+            "He is as clumsy as he is stupid. - C-3PO",
+            "To die for one's people is a great sacrifice. - Padmé Amidala",
+            "I'll never turn to the dark side. You have my word. - Anakin Skywalker",
+            "The garbage will do! - C-3PO",
+            "I've been waiting for you, Obi-Wan. The Jedi Council has failed you, as it failed your father. - Darth Vader",
+            "The Sith killed each other, victims of their own greed. - Yoda",
+            "Oh, my dear friend. You've only scratched the surface. - Obi-Wan Kenobi",
+            "Pages turners, they were not. - Yoda",
+            "There's always a bigger fish. - Qui-Gon Jinn",
+            "You were my brother, Anakin. I loved you. - Obi-Wan Kenobi",
+            "Travelling through hyperspace ain't like dusting crops, boy. - Han Solo",
+            "But I was going into Tosche Station to pick up some power converters! - Luke Skywalker",
+            "Now, witness the power of this fully operational battle station. - Grand Moff Tarkin",
+            "I like firsts. Good or bad, they're always memorable. - Ahsoka Tano",
+            "Come on, baby! Do the magic hand thing. - Greef Karga",
+            "I am a Mandalorian. Weapons are part of my religion. - Din Djarin",
+            "Be careful not to choke on your aspirations, director. - Darth Vader",
+            "Congratulations. You are being rescued. - K-2SO",
+            "Sorry lady. - Boba Fett",
+            "Women always figure out the truth. - Shmi Skywalker",
+            "In my experience, there's no such thing as luck. - Obi-Wan Kenobi",
+            "Never underestimate a droid. - General Leia Organa",
+            "You can't stop change any more than you can stop the suns from setting. - Shmi Skywalker",
+            "I'm not a committee. - Princess Leia",
+            "Insolence? We are pirates. - Captain Jack Sparrow (Sorry, wrong galaxy!)",
+            "I have you now! - Darth Vader",
+            "R2-D2, you know better than to trust a strange computer! - C-3PO",
+            "I don't know where you get your delusion, laser brain. - Han Solo",
+            "Strike me down, and I will become more powerful than you could possibly imagine. - Obi-Wan Kenobi",
+            "Give yourself to the Dark Side. - Emperor Palpatine",
+            "Awww! But I was going into Tosche Station to pick up some power converters! - Luke Skywalker",
+            "So what I told you was true... from a certain point of view. - Obi-Wan Kenobi",
+            "It's not impossible. I used to bullseye womp rats in my T-16 back home, they're not much bigger than two meters. - Luke Skywalker",
+            "He is as clumsy as he is stupid! - C-3PO",
+            "We have ... powerful friends. You're going to regret this. - Princess Leia",
+            "I have a bad feeling about this. - Lando Calrissian",
+            "That… is why you fail. - Yoda",
+            "It's worse. - Obi-Wan Kenobi",
+            "Well, you said you wanted to be around when I made a mistake. - Han Solo",
+            "Now, witness the power of this fully operational battle station. - Grand Moff Tarkin",
+            "… Scoundrel. I like that. - Han Solo",
+            "That's no moon. - Obi-Wan Kenobi",
+            "Hmm! Adventure. Hmmpf! Excitement. A Jedi craves not these things. - Yoda",
+            "Ben! I can be a Jedi. Ben, tell him I'm ready! - Luke Skywalker",
+            "You do have your moments. Not many, but you have them. - Han Solo",
+            "I have a bad feeling about this. - Luke Skywalker",
+            "Laugh it up, fuzzball! - Chewbacca",
+            "IT'S A TRAP. - Admiral Ackbar",
+            "I love you. - Princess Leia",
+            "I know. - Han Solo",
+            "Sorry about the mess. - Obi-Wan Kenobi",
+            "Never tell me the odds! - Luke Skywalker",
+            "I can feel the disturbance in the Force. - Obi-Wan Kenobi",
+            "The Force is strong with you, young Skywalker. - Obi-Wan Kenobi",
+            "You must learn to control your anger, young Skywalker. If you give into it, you will be destroyed. - Yoda",
+            "The path to the Dark Side is quick and easy. - Darth Sidious"
+        ];
+
+        function getRandomQuote() {
+            return quotes[Math.floor(Math.random() * quotes.length)];
+        }
+
+        document.getElementById('error-message').innerText = getRandomQuote();
+    </script>
+</body>
+</html>
